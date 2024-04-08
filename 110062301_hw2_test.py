@@ -3,19 +3,18 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import transforms as T
-import numpy as np
-import matplotlib.pyplot as plt
+# import matplotlib.pyplot as plt
 
 
 
 import gym
-import gym_super_mario_bros
-from nes_py.wrappers import JoypadSpace
-from gym_super_mario_bros.actions import COMPLEX_MOVEMENT
+# import gym_super_mario_bros
+# from nes_py.wrappers import JoypadSpace
+# from gym_super_mario_bros.actions import COMPLEX_MOVEMENT
 from collections import deque
 
-import numpy as np
-import os, time
+# import numpy as np
+# import os, time
 
 ################################
 ###     Deep Q Network       ###
@@ -160,36 +159,36 @@ class Agent():
 
 
 # if __name__ == '__main__': 
-#     # Create Environment
-#     env = gym_super_mario_bros.make('SuperMarioBros-v0')
-#     env = JoypadSpace(env, COMPLEX_MOVEMENT)
+    # # Create Environment
+    # env = gym_super_mario_bros.make('SuperMarioBros-v0')
+    # env = JoypadSpace(env, COMPLEX_MOVEMENT)
 
-#     agent = Agent()
-#     tot_reward = 0
+    # agent = Agent()
+    # tot_reward = 0
 
-#     for i in range(10):
-#         r = 0
-#         done = False
-#         state = env.reset()
-#         start_time = time.time()
+    # for i in range(10):
+    #     r = 0
+    #     done = False
+    #     state = env.reset()
+    #     start_time = time.time()
 
-#         while not done:
-#             action = agent.act(state)
-#             next_state, reward, done, info = env.step(action)
+    #     while not done:
+    #         action = agent.act(state)
+    #         next_state, reward, done, info = env.step(action)
             
-#             # env.render()
+    #         # env.render()
 
-#             if time.time() - start_time > 120:
-#                 break
+    #         if time.time() - start_time > 120:
+    #             break
 
-#             tot_reward += reward
-#             r += reward
-#             state = next_state
-#             # env.render('human')
-#         print(f'Game #{i}: {r}')
-#         print(f'====================')
-#         time.sleep(10)
+    #         tot_reward += reward
+    #         r += reward
+    #         state = next_state
+    #         # env.render('human')
+    #     print(f'Game #{i}: {r}')
+    #     print(f'====================')
+    #     time.sleep(10)
 
 
-#     env.close()
-#     print(f'mean_reward: {tot_reward/10}')
+    # env.close()
+    # print(f'mean_reward: {tot_reward/10}')
