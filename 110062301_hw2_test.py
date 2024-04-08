@@ -73,6 +73,7 @@ class Agent():
         
         self.stack_state = deque(maxlen=4)
         self.frame_skip = 0
+        self.step = 0
     
     def process(self, observation):
         observation = self.transforms1(observation.astype('int64').copy())
@@ -95,8 +96,17 @@ class Agent():
         if self.frame_skip % 4 == 0:
             observation = self.process(observation)
             self.last_action = self.model(observation).max(1)[1].view(1, 1).item()
-            
-            
+        
+        
+        if self.step == 2092:
+            self.stack_state = deque(maxlen=4)
+            self.frame_skip = 0
+            # self.step = 0
+        # print("step: ", self.step)
+        self.step += 1
         self.frame_skip +=1
+        
+        
         return self.last_action
+
 
