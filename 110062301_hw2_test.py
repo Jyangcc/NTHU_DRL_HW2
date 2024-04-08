@@ -151,7 +151,7 @@ class Agent():
             self.last_action = self.model(observation).max(1)[1].view(1, 1).item()
             
             
-        self.frame_skip += 1
+        self.frame_skip +=1
         return self.last_action
 
 
