@@ -3,6 +3,3 @@ tqdm
 requests
 argparse
 torchvision
-numpy
-gym
-queue
