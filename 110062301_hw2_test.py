@@ -148,8 +148,8 @@ class Agent():
             self.frames.append(observation)
             observation = gym.wrappers.frame_stack.LazyFrames(list(self.frames))
             observation = observation[0].__array__() if isinstance(observation, tuple) else observation.__array__()
-            observation = torch.tensor(observation, device=self.device).unsqueeze(0)
-            self.last_action = self.net(observation).max(1)[1].view(1, 1).item()
+            observation = torch.tensor(observation).unsqueeze(0)
+            self.last_action = self.model(observation).max(1)[1].view(1, 1).item()
             
             
         self.frame_skip += 1
