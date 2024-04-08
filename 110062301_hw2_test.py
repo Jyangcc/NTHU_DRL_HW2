@@ -12,6 +12,7 @@ import gym
 import gym_super_mario_bros
 from nes_py.wrappers import JoypadSpace
 from gym_super_mario_bros.actions import COMPLEX_MOVEMENT
+from collections import deque
 
 import numpy as np
 import os, time
@@ -116,7 +117,6 @@ class DQN(nn.Module):
 #         return self.last_action
 
 
-from collections import deque
 
 class Agent():
     def __init__(self):
@@ -153,7 +153,6 @@ class Agent():
             
             
         self.frame_skip += 1
-        
         return self.last_action
 
 
@@ -168,7 +167,7 @@ class Agent():
 #     agent = Agent()
 #     tot_reward = 0
 
-#     for i in range(50):
+#     for i in range(10):
 #         r = 0
 #         done = False
 #         state = env.reset()
@@ -178,7 +177,7 @@ class Agent():
 #             action = agent.act(state)
 #             next_state, reward, done, info = env.step(action)
             
-#             env.render()
+#             # env.render()
 
 #             if time.time() - start_time > 120:
 #                 break
@@ -188,7 +187,9 @@ class Agent():
 #             state = next_state
 #             # env.render('human')
 #         print(f'Game #{i}: {r}')
+#         print(f'====================')
+#         time.sleep(10)
 
 
 #     env.close()
-#     print(f'mean_reward: {tot_reward/50}')
+#     print(f'mean_reward: {tot_reward/10}')
