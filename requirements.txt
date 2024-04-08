@@ -5,4 +5,4 @@ argparse
 torchvision
 numpy
 gym
-collections
+queue
