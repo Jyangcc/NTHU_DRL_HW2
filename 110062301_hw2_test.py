@@ -4,7 +4,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from torchvision import transforms as T
 import gym
-import queue
+from collections import deque
 
 ################################
 ###     Deep Q Network       ###
@@ -56,6 +56,7 @@ class DQN(nn.Module):
         return Rev
 
 
+
 ################################
 ###          Agent           ###
 ################################
@@ -70,7 +71,7 @@ class Agent():
         self.transforms1 = T.Compose( [T.ToTensor(), T.Grayscale()] )
         self.transforms2 = T.Compose( [T.Resize((84, 84), antialias=True), T.Normalize(0, 255)] )
         
-        self.stack_state = queue(maxsize=4)
+        self.stack_state = deque(maxlen=4)
         self.frame_skip = 0
     
     def process(self, observation):
