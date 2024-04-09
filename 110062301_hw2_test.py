@@ -73,7 +73,6 @@ class Agent():
         
         self.stack_state = deque(maxlen=4)
         self.frame_skip = 0
-        self.step = 0
     
     def process(self, observation):
         observation = self.transforms1(observation.astype('int64').copy())
@@ -82,13 +81,8 @@ class Agent():
         while len(self.stack_state) < 4:
             self.stack_state.append(observation)
         self.stack_state.append(observation)
-        
-        observation = gym.wrappers.frame_stack.LazyFrames(list(self.stack_state))
-        
-        observation = observation[0].__array__() if isinstance(observation, tuple) else observation.__array__()
-        
-        observation = torch.tensor(observation).unsqueeze(0)
-        
+        observation = torch.stack(list(self.stack_state)).unsqueeze(0)
+
         return observation
         
     
@@ -97,16 +91,6 @@ class Agent():
             observation = self.process(observation)
             self.last_action = self.model(observation).max(1)[1].view(1, 1).item()
         
-        
-        if self.step == 2092:
-            self.stack_state = deque(maxlen=4)
-            self.frame_skip = 0
-            # self.step = 0
-        # print("step: ", self.step)
-        self.step += 1
         self.frame_skip +=1
         
-        
         return self.last_action
-
-
